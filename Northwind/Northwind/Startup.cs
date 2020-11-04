@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Northwind.Infrastructure;
 using Northwind.Models;
@@ -25,6 +27,7 @@ namespace Northwind
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
             services.AddControllersWithViews();
             services.AddDatabase(Configuration);
             services.AddBusiness();
@@ -51,21 +54,28 @@ namespace Northwind
             }
 
             var productsPerPage = configuration.GetValue<int>("ProductsPerPage");
+            var cacheMaxAge = configuration.GetValue<int>("CacheMaxAge");
+
             logger.Information($"Number of products per page:{(productsPerPage == 0 ? "unlimited" : productsPerPage.ToString())}");
+            logger.Information($"Image cache max age: {cacheMaxAge}s");
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseResponseCaching();
 
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            
 
             app.UseExceptionHandler(appError =>
             {

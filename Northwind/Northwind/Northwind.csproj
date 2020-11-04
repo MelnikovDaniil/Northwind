@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Northwind.Domain\Northwind.Data.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

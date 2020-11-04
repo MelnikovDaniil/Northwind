@@ -69,7 +69,7 @@ namespace Northwind.Business.Services
             var suppliers = _supplierRepository.GetAll()
                 .Select(suplier => suplier.CompanyName);
             var categories = _categoryRepository.GetAll()
-                .Select(suplier => suplier.CategoryName);
+                .Select(category => category.CategoryName);
 
             var productForEdit = new ProductEditModel
             {

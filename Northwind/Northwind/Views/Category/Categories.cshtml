@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
+            <th>
+                Image
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -37,7 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                <a href="@Url.Action("GetCategoryImage", "Category", new { categoryId = item.CategoryId })">
+                    <img height="80"  src="@Url.Action("GetCategoryImage", "Category", new { categoryId = item.CategoryId })" alt="Alternate Text" />
+                </a>
+            </td>
+            <td>
+                @Html.ActionLink("Upload image", "UploadImage", new { categoryId = item.CategoryId }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
