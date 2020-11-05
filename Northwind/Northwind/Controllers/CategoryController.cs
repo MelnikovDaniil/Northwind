@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Northwind.Business.Interfaces;
+using Northwind.Core.Filters;
 using Northwind.Data.Domain.DTO.Category;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Northwind.Controllers
 {
+    [ServiceFilter(typeof(LoggingFilter))]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -54,7 +53,7 @@ namespace Northwind.Controllers
 
             if (ModelState.IsValid)
             {
-                using(var ms = new MemoryStream())
+                using (var ms = new MemoryStream())
                 {
                     categoryImage.FormFile.CopyTo(ms);
                     var fileBytes = ms.ToArray();

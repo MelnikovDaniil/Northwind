@@ -33,7 +33,7 @@ namespace Northwind.UnitTest.Services
             var products = new List<Product>
             {
                 new Product
-                { 
+                {
                     CategoryId = 0,
                     Discontinued = true,
                     ProductId = 0,
@@ -161,7 +161,7 @@ namespace Northwind.UnitTest.Services
                 new Supplier { SupplierId = 3, CompanyName = "supplier3" },
             };
 
-            var categories = new List<Category> 
+            var categories = new List<Category>
             {
                 new Category { CategoryId = 0, CategoryName = "category0"},
                 new Category { CategoryId = 1, CategoryName = "category1"},

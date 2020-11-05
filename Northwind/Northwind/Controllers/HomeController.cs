@@ -1,12 +1,13 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Northwind.Core.Filters;
 using Northwind.Data.Domain.Model;
 using Northwind.DataAccess.Interfaces;
 using Northwind.Models;
+using System.Diagnostics;
 
 namespace Northwind.Controllers
 {
+    [ServiceFilter(typeof(LoggingFilter))]
     public class HomeController : Controller
     {
         private readonly IRepository<Employee> _employeeRepository;

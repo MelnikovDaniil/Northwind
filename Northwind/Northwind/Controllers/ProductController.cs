@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Northwind.Business.Interfaces;
+using Northwind.Core.Filters;
 using Northwind.Data.Domain.DTO.Product;
 using Serilog;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Northwind.Controllers
 {
+    [ServiceFilter(typeof(LoggingFilter))]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;

@@ -14,7 +14,7 @@ namespace Northwind.Infrastructure
             var connectionString = configuration.GetConnectionString("Northwind");
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddDbContext<NorthwindContext>(options => 
+            services.AddDbContext<NorthwindContext>(options =>
             {
                 options.UseLazyLoadingProxies();
                 options.UseSqlServer(connectionString);

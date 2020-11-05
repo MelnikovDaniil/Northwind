@@ -5,10 +5,8 @@ using Northwind.Business.Services;
 using Northwind.Data.Domain.Model;
 using Northwind.DataAccess.Interfaces;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Northwind.UnitTest.Services
 {

@@ -111,7 +111,7 @@ namespace Northwind.Business.Services
             };
 
             var createdProduct = _productRepository.Create(newProduct);
-            if  (createdProduct != null)
+            if (createdProduct != null)
             {
                 return createdProduct;
             }
@@ -131,7 +131,7 @@ namespace Northwind.Business.Services
 
             updatedProduct.CategoryId = newCategory.CategoryId;
             updatedProduct.SupplierId = newSupplier.SupplierId;
-         
+
             updatedProduct.UnitPrice = product.UnitPrice;
             updatedProduct.Discontinued = product.Discontinued;
             updatedProduct.ReorderLevel = product.ReorderLevel;

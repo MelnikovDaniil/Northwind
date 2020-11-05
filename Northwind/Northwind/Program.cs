@@ -13,7 +13,8 @@ namespace Northwind
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(config => {
+                .ConfigureLogging(config =>
+                {
                     config.ClearProviders();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
