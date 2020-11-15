@@ -31,7 +31,8 @@ namespace Northwind.Controllers
             productsPerPage = configuration.GetValue<int>("ProductsPerPage");
         }
 
-        public IActionResult Products()
+        [Route("Product")]
+        public IActionResult Index()
         {
             IEnumerable<ProductViewModel> products;
             if (productsPerPage == 0)

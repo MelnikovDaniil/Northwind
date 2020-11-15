@@ -12,12 +12,6 @@
 </head>
 <body>
     <header>
-        @if (IsSectionDefined("Header"))
-        {
-            @RenderSection("Header")
-        }
-        else
-        {
             <nav class="navbar navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div class="container">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Northwind</a>
@@ -45,28 +39,31 @@
                     </div>
                 </div>
             </nav>
-        }
     </header>
 
     <div class="container">
         <main role="main" class="pb-3">
+            <div class="row">
+                <div class="card col-4 offset-1" style="width: 18rem;">
+                    <img src="https://images.by.prom.st/117533054_perevozka-opasnyh-gruzov.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Categories</p>
+                        <a asp-controller="Category" class="btn btn-primary">Go categories</a>
+                    </div>
+                </div>
+                <div class="card col-4 offset-1" style="width: 18rem;">
+                    <img src="https://bit.ly/33kdLig" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Products</p>
+                        <a asp-controller="Product" class="btn btn-primary">Go products</a>
+                    </div>
+                </div>
+            </div>
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-
-        <div class="container">
-            @if (IsSectionDefined("Footer"))
-            {
-                @RenderSection("Footer")
-            }
-            else
-            {
-                <div>&copy; 2020 - Northwind - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
-            }
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

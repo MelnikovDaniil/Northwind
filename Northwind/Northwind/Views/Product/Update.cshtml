@@ -4,8 +4,9 @@
     ViewData["Title"] = action + "product";
 }
 
-<h1>action</h1>
-
+<div>
+    @await Component.InvokeAsync("Breadcrumbs", new { context = Context })
+</div>
 <h4>ProductEditModel</h4>
 <hr />
 <div class="row">

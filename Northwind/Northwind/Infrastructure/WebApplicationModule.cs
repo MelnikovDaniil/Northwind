@@ -12,6 +12,7 @@ namespace Northwind.Infrastructure
         public static IServiceCollection AddWebApplication(this IServiceCollection services)
         {
             services.AddScoped<LoggingFilter>();
+            services.AddScoped<BreadcrumbActionFilter>();
             return services;
         }
     }

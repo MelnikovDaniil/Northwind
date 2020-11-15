@@ -1,9 +1,12 @@
 ﻿@model Northwind.Data.Domain.DTO.Category.CategoryImageViewModel
-
+@using Northwind.Core.HtmlHelpers;
 @{
     ViewData["Title"] = "UploadImage";
 }
 
+<div>
+    @await Component.InvokeAsync("Breadcrumbs", new { context = Context })
+</div>
 <h1>UploadImage</h1>
 
 <h4>CategoryImageViewModel</h4>
@@ -18,8 +21,8 @@
                     <label asp-for="FormFile"></label>
                 </dt>
                 <dd>
-                    <a href="@Url.Action("GetCategoryImage", "Category", new { categoryId = Model.CategoryId })">
-                        <img src="@Url.Action("GetCategoryImage", "Category", new { categoryId = Model.CategoryId })" alt="category picture" />
+                    <a href="@Html.NorthwindImageLink(Model.CategoryId)">
+                        <img src="@Html.NorthwindImageLink(Model.CategoryId)" alt="CategoryImage_@Model.CategoryId" />
                     </a>
                     <input asp-for="FormFile" type="file" accept=".jpg, .jpeg, .png">
                     <span asp-validation-for="FormFile"></span>

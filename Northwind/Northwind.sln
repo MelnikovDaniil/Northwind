@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Data.Domain", "No
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Business", "Northwind.Business\Northwind.Business.csproj", "{53F2807E-157B-45C2-AB06-CE535DC82E4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.UnitTest", "test\Northwind.Test\Northwind.UnitTest.csproj", "{3A1AA060-62FD-4B8B-B73F-8BA7B0D4ABD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.UnitTest", "test\Northwind.Test\Northwind.UnitTest.csproj", "{3A1AA060-62FD-4B8B-B73F-8BA7B0D4ABD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.IntegrationTest", "Northwind.IntegrationTest\Northwind.IntegrationTest.csproj", "{6ABC3667-A2FB-43E4-A7B2-40D5D3AED9F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.IntegrationTest", "Northwind.IntegrationTest\Northwind.IntegrationTest.csproj", "{6ABC3667-A2FB-43E4-A7B2-40D5D3AED9F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

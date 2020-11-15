@@ -18,7 +18,8 @@ namespace Northwind.Controllers
             _categoryService = categoryService;
         }
 
-        public IActionResult Categories()
+        [Route("Category")]
+        public IActionResult Index()
         {
             var categories = _categoryService.GetAll();
             return View(categories);
