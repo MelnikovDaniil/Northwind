@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Serilog;
-using Northwind.Data.Domain.Extensions;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Configuration;
+using Northwind.Data.Domain.Extensions;
+using Serilog;
 using System.Linq;
 
 namespace Northwind.Core.Filters

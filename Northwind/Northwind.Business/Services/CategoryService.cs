@@ -15,6 +15,30 @@ namespace Northwind.Business.Services
             _categoryRepository = categoryRepository;
         }
 
+        public Category Create(Category category)
+        {
+            return _categoryRepository.Create(category);
+        }
+
+        public Category Update(int id, Category category)
+        {
+            var foundCategory = _categoryRepository.GetById(id);
+            if (foundCategory == null)
+            {
+                return null;
+            }
+
+            foundCategory.CategoryName = category.CategoryName;
+            foundCategory.Description = category.Description;
+
+            return _categoryRepository.Update(foundCategory);
+        }
+
+        public bool Delete(int categoryId)
+        {
+            return _categoryRepository.Delete(categoryId);
+        }
+
         public IEnumerable<Category> GetAll()
         {
             var categories = _categoryRepository.GetAll();

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.Business\Northwind.Business.csproj" />
+    <ProjectReference Include="..\Northwind.DataAccess\Northwind.Data.csproj" />
+    <ProjectReference Include="..\Northwind.Domain\Northwind.Data.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

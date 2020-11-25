@@ -12,8 +12,10 @@ namespace Northwind.Business.Interfaces
 
         ProductEditModel GetProductForEdit(int id);
 
-        Product UpdateProduct(ProductEditModel product);
+        Product Update(ProductEditModel product);
 
-        Product CreateProduct(ProductEditModel product);
+        Product Create(ProductEditModel product);
+
+        bool Delete(int id);
     }
 }

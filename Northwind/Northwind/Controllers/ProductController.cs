@@ -58,7 +58,7 @@ namespace Northwind.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updatedProduct = _productService.UpdateProduct(product);
+                var updatedProduct = _productService.Update(product);
                 _logger.Information($"Product [Id: {updatedProduct.ProductId}, Name: {updatedProduct.ProductName}] was updated");
                 return RedirectToAction("Products");
             }
@@ -83,7 +83,7 @@ namespace Northwind.Controllers
         {
             if (ModelState.IsValid)
             {
-                var createdProduct = _productService.CreateProduct(product);
+                var createdProduct = _productService.Create(product);
 
                 _logger.Information($"Product [Id: {createdProduct.ProductId}, Name: {createdProduct.ProductName}] was created");
                 return RedirectToAction("Products");

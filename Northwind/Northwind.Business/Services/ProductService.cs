@@ -90,7 +90,7 @@ namespace Northwind.Business.Services
             return productForEdit;
         }
 
-        public Product CreateProduct(ProductEditModel product)
+        public Product Create(ProductEditModel product)
         {
             var newCategory = _categoryRepository.GetAll()
                 .First(category => category.CategoryName == product.CategoryName);
@@ -121,9 +121,14 @@ namespace Northwind.Business.Services
             }
         }
 
-        public Product UpdateProduct(ProductEditModel product)
+        public Product Update(ProductEditModel product)
         {
             var updatedProduct = _productRepository.GetById(product.ProductId.Value);
+            if (updatedProduct == null)
+            {
+                return null;
+            }
+
             var newCategory = _categoryRepository.GetAll()
                 .First(category => category.CategoryName == product.CategoryName);
             var newSupplier = _supplierRepository.GetAll()
@@ -148,6 +153,11 @@ namespace Northwind.Business.Services
             {
                 throw new Exception("Update error");
             }
+        }
+
+        public bool Delete(int id)
+        {
+            return _productRepository.Delete(id);
         }
     }
 }

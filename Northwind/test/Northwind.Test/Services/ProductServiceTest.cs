@@ -243,7 +243,7 @@ namespace Northwind.UnitTest.Services
                 _moqCategoryRepository.Object, _moqSupplierRepository.Object);
 
             // Act
-            var result = _productService.CreateProduct(productForEdit);
+            var result = _productService.Create(productForEdit);
 
             // Assert
             result.Should().BeEquivalentTo(product);
@@ -300,7 +300,7 @@ namespace Northwind.UnitTest.Services
                 _moqCategoryRepository.Object, _moqSupplierRepository.Object);
 
             // Act
-            var result = _productService.UpdateProduct(productForEdit);
+            var result = _productService.Update(productForEdit);
 
             // Assert
             result.Should().BeEquivalentTo(product);

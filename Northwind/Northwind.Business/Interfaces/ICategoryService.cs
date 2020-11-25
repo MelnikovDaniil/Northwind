@@ -10,5 +10,12 @@ namespace Northwind.Business.Interfaces
         byte[] GetCategoryImage(int categoryId);
 
         bool UpdateCategoryImage(byte[] byteImage, int categoryId);
+
+        Category Create(Category category);
+
+        Category Update(int id, Category category);
+
+        bool Delete(int categoryId);
+
     }
 }

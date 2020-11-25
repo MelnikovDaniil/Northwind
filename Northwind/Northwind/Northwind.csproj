@@ -28,6 +28,7 @@
     <ProjectReference Include="..\Northwind.Business\Northwind.Business.csproj" />
     <ProjectReference Include="..\Northwind.DataAccess\Northwind.Data.csproj" />
     <ProjectReference Include="..\Northwind.Domain\Northwind.Data.Domain.csproj" />
+    <ProjectReference Include="..\Northwind.Infrastructure\Northwind.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
