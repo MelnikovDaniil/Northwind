@@ -37,7 +37,7 @@ namespace Northwind.UnitTest.Controllers
             var categoryController = new CategoryController(_moqCategoryService.Object);
 
             // Act
-            var result = categoryController.Categories();
+            var result = categoryController.Index();
 
             // Assert
             result.Should().BeOfType<ViewResult>();
@@ -54,7 +54,7 @@ namespace Northwind.UnitTest.Controllers
             var categoryController = new CategoryController(_moqCategoryService.Object);
 
             // Act
-            var result = categoryController.Categories();
+            var result = categoryController.Index();
 
             // Assert
             var subject = result.Should().BeOfType<ViewResult>().Subject;
