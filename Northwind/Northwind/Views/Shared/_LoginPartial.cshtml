@@ -7,6 +7,8 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
+        <hr style="height:1px;border-width:0;color:green;background-color:green">
+
         <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     </li>
     <li class="nav-item">
@@ -17,9 +19,11 @@
 }
 else
 {
-    <li class="nav-item">
-        <a class="btn btn-success" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        <a class="btn btn-outline-success" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
+<li class="nav-item">
+    <hr style="height:1px;border-width:0;color:green;background-color:green">
+
+    <a class="btn btn-success" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    <a class="btn btn-outline-success" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+</li>
 }
 </ul>

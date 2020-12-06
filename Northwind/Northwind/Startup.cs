@@ -1,17 +1,14 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Northwind.Infrastructure;
 using Northwind.Models;
@@ -45,22 +42,24 @@ namespace Northwind
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 0;
+                options.SignIn.RequireConfirmedEmail = false;
             });
-            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+
+            services.AddAuthentication(sharedOptions =>
+                {
+                    sharedOptions.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+                    sharedOptions.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+                    sharedOptions.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+                })
                 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
-            //services.AddControllers();
-
-            services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
-
-            services.AddControllersWithViews(options =>
+            services.Configure<OpenIdConnectOptions>(AzureADDefaults.AuthenticationScheme, options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+                options.UseTokenLifetime = false;
             });
+
+            services.AddControllers();
+
             services.AddRazorPages()
                 .AddMicrosoftIdentityUI();
 
@@ -72,6 +71,7 @@ namespace Northwind
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, IConfiguration configuration)
         {
+            RolesData.SeedRoles(app.ApplicationServices, Configuration).Wait();
             var applicationPath = Assembly.GetExecutingAssembly().Location;
             logger.Information("Path to application " + applicationPath);
             if (env.IsDevelopment())

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Northwind.Business.Interfaces;
 using Northwind.Core.Filters;
 using Northwind.Data.Domain.DTO.Category;
@@ -9,7 +8,6 @@ using System.Linq;
 namespace Northwind.Controllers
 {
     [ServiceFilter(typeof(LoggingFilter))]
-    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
