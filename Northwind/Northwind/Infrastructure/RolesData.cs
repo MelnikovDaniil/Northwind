@@ -8,24 +8,20 @@ namespace Northwind.Infrastructure
 {
     public static class RolesData
     {
-        public static async Task SeedRoles(IServiceProvider serviceProvider, IConfiguration configuration)
+        public static async Task SeedRoles(IServiceProvider serviceProvider, IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
                 var adminConfig = configuration.GetSection("UserAdmin");
-                var adminRole = adminConfig["Role"];
-                if (!await roleManager.RoleExistsAsync(adminRole))
+                var userName = adminConfig["UserName"];
+                if (userManager.FindByEmailAsync(userName).Result == null)
                 {
-                    await roleManager.CreateAsync(new IdentityRole(adminRole));
-                    var userName = adminConfig["UserName"];
                     var password = adminConfig["Password"];
                     var admin = new IdentityUser(userName);
                     await userManager.CreateAsync(admin, password);
                     var newUser = await userManager.FindByNameAsync(userName);
                     await userManager.SetLockoutEnabledAsync(newUser, false);
-                    await userManager.AddToRoleAsync(newUser, adminRole);
+                    await userManager.AddToRoleAsync(newUser, "UserAdmin");
                 }
             }
         }

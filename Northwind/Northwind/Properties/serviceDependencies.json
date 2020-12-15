@@ -2,6 +2,10 @@
   "dependencies": {
     "mssql1": {
       "type": "mssql",
+      "connectionId": "Northwind"
+    },
+    "mssql2": {
+      "type": "mssql",
       "connectionId": "IdentityContextConnection"
     }
   }

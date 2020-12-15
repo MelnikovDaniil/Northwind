@@ -30,6 +30,12 @@ namespace Northwind
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var logger = new LoggerConfiguration()
+                      .ReadFrom.Configuration(Configuration)
+                      .CreateLogger();
+            services.AddSingleton<ILogger>(logger);
+            logger.Information("Starting configuration");
+
             services.AddWebApplication();
             services.AddResponseCaching();
             services.AddDatabase(Configuration);
@@ -62,16 +68,11 @@ namespace Northwind
 
             services.AddRazorPages()
                 .AddMicrosoftIdentityUI();
-
-            services.AddSingleton<ILogger>(
-                context => new LoggerConfiguration()
-                      .ReadFrom.Configuration(Configuration)
-                      .CreateLogger());
+            logger.Information("Application configured");
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, IConfiguration configuration)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
-            RolesData.SeedRoles(app.ApplicationServices, Configuration).Wait();
             var applicationPath = Assembly.GetExecutingAssembly().Location;
             logger.Information("Path to application " + applicationPath);
             if (env.IsDevelopment())
